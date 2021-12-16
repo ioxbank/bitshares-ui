@@ -19,11 +19,10 @@ jobs:
                   node-version: ${{ matrix.node-version }}
             - run: npm ci
             - run: npm run build-hash
-              - name: 'Tar files'
-    run: tar -cvf dist.tar /home/runner/work/bitshares-ui/bitshares-ui/build/dist
-
-  - name: 'Upload Artifact'
-    uses: actions/upload-artifact@v2
-    with:
-      name: ioxbank
-      path: dist.tar 
+            - name: 'ioxbank'
+            - run: tar -cvf dist.tar /home/runner/work/bitshares-ui/bitshares-ui/build/dist
+            - name: 'Upload Artifact'
+                uses: actions/upload-artifact@v2
+                    with:
+                    name: ioxbank
+                    path: dist.tar 
