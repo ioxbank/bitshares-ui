@@ -23,16 +23,14 @@ jobs:
               run: mkdir downloads
         
             - name: step 2 - Add artifacts to publish to the temp folder
-        run: |
-          cd downloads
-          echo 'alpha'    > alpha.html
-          echo 'bravo'    > bravo.html
-          echo 'charlie'  > charlie.html
-          cd ..
+              run: |
+                cd downloads
+                cp -r build/dist/* downloads
+                cd ..
     
-      - name: Step 3 - Use the Upload Artifact GitHub Action
-        uses: actions/upload-artifact@v2
-        with: 
-          name: assets-for-download
-          path: downloads
+           - name: Step 3 - Use the Upload Artifact GitHub Action
+                uses: actions/upload-artifact@v2
+                  with: 
+                    name: assets-for-download
+                     path: downloads
             
