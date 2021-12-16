@@ -20,4 +20,8 @@ jobs:
             - run: npm ci
             - run: npm run build-hash
             - run: tar -cvf dist.tar /home/runner/work/bitshares-ui/bitshares-ui/build/dist
-                path: dist.tar   
+            - name: 'Tar files'
+              uses: actions/upload-artifact@v2
+              with:
+              name: my-artifact
+              path: dist.tar
