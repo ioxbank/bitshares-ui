@@ -1,9 +1,7 @@
 # This workflow will do a clean install of node dependencies, build the source code and push the binaries to the deployment repository.
-name: Continuous Delivery and Deployment
-
+name: Manually triggered workflow
 on:
-    push:
-        branches: [ioxbank]
+  workflow_dispatch:
 
 jobs:
     build:
