@@ -20,5 +20,3 @@ jobs:
             - run: npm ci
             - run: npm run build-hash
             - run: tar -cvf dist.tar /home/runner/work/bitshares-ui/bitshares-ui/build/dist
-              uses: actions/upload-artifact@v2
-              
