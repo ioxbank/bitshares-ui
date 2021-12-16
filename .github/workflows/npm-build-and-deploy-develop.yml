@@ -19,9 +19,6 @@ jobs:
                   node-version: ${{ matrix.node-version }}
             - run: npm ci
             - run: npm run build
-    archive-build-artifacts:
-    steps:
-
       - name: Step 1 - Create a temporary artifact downloads folder
         run: mkdir downloads
         
