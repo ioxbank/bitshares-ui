@@ -16,10 +16,10 @@ jobs:
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
-                  node-version: ${{ matrix.node-version }}
+                node-version: ${{ matrix.node-version }}
             - run: npm ci
             - run: npm run build
             - uses: actions/upload-artifact@v2
               with:
-              name: my-artifact
-              path: build/dist/ # or path/to/artifact
+                name: my-artifact
+                path: build/dist/ # or path/to/artifact
