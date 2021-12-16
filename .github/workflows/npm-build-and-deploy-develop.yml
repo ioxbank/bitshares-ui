@@ -19,4 +19,4 @@ jobs:
                   node-version: ${{ matrix.node-version }}
             - run: npm ci
             - run: npm run build-hash
-            - run: tar -cvf dist.tar /home/runner/work/bitshares-ui/bitshares-ui/build/dist
+            - run: tar -cvf dist.tar ./bitshares-ui/bitshares-ui/build/dist
