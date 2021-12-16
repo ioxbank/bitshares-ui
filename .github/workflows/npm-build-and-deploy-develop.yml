@@ -20,7 +20,6 @@ jobs:
             - run: npm ci
             - run: npm run build
     archive-build-artifacts:
-    runs-on: ubuntu-latest
     steps:
 
       - name: Step 1 - Create a temporary artifact downloads folder
