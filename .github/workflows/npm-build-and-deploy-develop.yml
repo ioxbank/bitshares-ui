@@ -20,5 +20,4 @@ jobs:
             - run: npm ci
             - run: npm run build-hash
             - run: tar -cvf dist.tar /home/runner/work/bitshares-ui/bitshares-ui/build/dist
-                name: my-artifact
                 path: dist.tar   
