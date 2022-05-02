@@ -337,7 +337,13 @@ class FeePoolOperation extends React.Component {
         const {props} = this;
         const {claimFeesAmount} = this.state;
         const {asset, getDynamicObject} = props;
-        var bitAsset = asset.bitasset;
+        let backingAsset = this.props.asset.has("bitasset")
+            ? this.props.asset.getIn([
+                  "bitasset",
+                  "options",
+                  "short_backing_asset"
+              ])
+            : "1.3.0";
         let dynamicObject = getDynamicObject(
             asset.get("dynamic_asset_data_id")
         );
@@ -386,10 +392,7 @@ class FeePoolOperation extends React.Component {
                     {dynamicObject ? (
                         <FormattedAsset
                             amount={dynamicObject.get("accumulated_collateral_fees")}
-                            asset={
-                                                    asset.bitasset.options
-                                                        .short_backing_asset
-                                                }
+                            asset={backingAsset.get("id")}
                         />
                     ) : null}
                 </div>
@@ -399,10 +402,7 @@ class FeePoolOperation extends React.Component {
                     display_balance={unclaimedaccumulatedBalanceText}
                     amount={claimFeesAmount}
                     onChange={this.onClaimInput.bind(this, "claimFeesAmount")}
-                    asset={
-                                                    asset.bitasset.options
-                                                        .short_backing_asset
-                                                }
+                    asset={backingAsset.get("id")}
                     assets={[asset.get("id")]}
                     placeholder="0.0"
                     tabIndex={1}
