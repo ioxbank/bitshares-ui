@@ -333,6 +333,95 @@ class FeePoolOperation extends React.Component {
         );
     }
 
+        renderClaimCollateralFees() {
+        const {props} = this;
+        const {claimFeesAmount} = this.state;
+        const {asset, getDynamicObject} = props;
+        let dynamicObject = getDynamicObject(
+            asset.get("dynamic_asset_data_id")
+        );
+
+        let unclaimedaccumulatedBalance = dynamicObject
+            ? dynamicObject.get("accumulated_collateral_fees")
+            : 0;
+        let validaccumulatedClaim =
+            claimFeesAmount > 0 &&
+            this.state.claimFeesAmountAsset.getAmount() <= unclaimedaccumulatedBalance;
+
+        let unclaimedaccumulatedBalanceText = (
+            <span
+                onClick={() => {
+                    this.state.claimFeesAmountAsset.setAmount({
+                        sats: dynamicObject.get("accumulated_collateral_fees")
+                    });
+                    this.setState({
+                        claimFeesAmount: this.state.claimFeesAmountAsset.getAmount(
+                            {
+                                real: true
+                            }
+                        )
+                    });
+                }}
+            >
+                <Translate component="span" content="transfer.available" />
+                :&nbsp;
+                <FormattedAsset
+                    amount={unclaimedaccumulatedBalance}
+                    asset={asset.get("id")}
+                />
+            </span>
+        );
+
+        return (
+            <div>
+                <Translate
+                    component="p"
+                    content="explorer.asset.fee_pool.accumulated_collateral_fees"
+                    asset={asset.get("symbol")}
+                />
+                <div style={{paddingBottom: "1rem"}}>
+                    <Translate content="explorer.asset.fee_pool.accumulated_collateral_fees" />
+                    :&nbsp;
+                    {dynamicObject ? (
+                        <FormattedAsset
+                            amount={dynamicObject.get("accumulated_collateral_fees")}
+                            asset={asset.get("id")}
+                        />
+                    ) : null}
+                </div>
+
+                <AmountSelector
+                    label="transfer.amount"
+                    display_balance={unclaimedBalanceText}
+                    amount={claimFeesAmount}
+                    onChange={this.onClaimInput.bind(this, "claimFeesAmount")}
+                    asset={asset.get("id")}
+                    assets={[asset.get("id")]}
+                    placeholder="0.0"
+                    tabIndex={1}
+                    style={{width: "100%", paddingTop: 16}}
+                />
+
+                <div style={{paddingTop: "1rem"}} className="button-group">
+                    <button
+                        className={classnames("button", {
+                            disabled: !validaccumulatedClaim
+                        })}
+                        onClick={this.onClaimFees.bind(this)}
+                    >
+                        <Translate content="explorer.asset.fee_pool.claim_collateral_fees" />
+                    </button>
+                    <button
+                        className="button outline"
+                        onClick={this.reset.bind(this)}
+                    >
+                        <Translate content="account.perm.reset" />
+                    </button>
+                </div>
+            </div>
+        );
+    }
+    
     render() {
         if (this.props.type === "fund") {
             return this.renderFundPool();
@@ -340,6 +429,8 @@ class FeePoolOperation extends React.Component {
             return this.renderClaimPool();
         } else if (this.props.type === "claim_fees") {
             return this.renderClaimFees();
+        }  else if (this.props.type === "claim_collateral_fees") {
+            return this.renderClaimCollateralFees();
         }
     }
 }
