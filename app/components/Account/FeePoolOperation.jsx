@@ -337,6 +337,7 @@ class FeePoolOperation extends React.Component {
         const {props} = this;
         const {claimFeesAmount} = this.state;
         const {asset, getDynamicObject} = props;
+        var options = asset.options;
         let dynamicObject = getDynamicObject(
             asset.get("dynamic_asset_data_id")
         );
