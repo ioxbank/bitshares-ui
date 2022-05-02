@@ -385,7 +385,10 @@ class FeePoolOperation extends React.Component {
                     {dynamicObject ? (
                         <FormattedAsset
                             amount={dynamicObject.get("accumulated_collateral_fees")}
-                            asset={asset.get("id")}
+                            asset={
+                                                    asset.bitasset.options
+                                                        .short_backing_asset
+                                                }
                         />
                     ) : null}
                 </div>
@@ -395,7 +398,10 @@ class FeePoolOperation extends React.Component {
                     display_balance={unclaimedaccumulatedBalanceText}
                     amount={claimFeesAmount}
                     onChange={this.onClaimInput.bind(this, "claimFeesAmount")}
-                    asset={asset.get("id")}
+                    asset={
+                                                    asset.bitasset.options
+                                                        .short_backing_asset
+                                                }
                     assets={[asset.get("id")]}
                     placeholder="0.0"
                     tabIndex={1}
