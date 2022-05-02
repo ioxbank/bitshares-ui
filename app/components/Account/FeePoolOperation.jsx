@@ -384,7 +384,7 @@ class FeePoolOperation extends React.Component {
                 <Translate
                     component="p"
                     content="explorer.asset.fee_pool.accumulated_collateral_fees"
-                    asset={asset.get("symbol")}
+                    asset={backingAsset.get("symbol")}
                 />
                 <div style={{paddingBottom: "1rem"}}>
                     <Translate content="explorer.asset.fee_pool.accumulated_collateral_fees" />
