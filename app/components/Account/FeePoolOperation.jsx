@@ -80,7 +80,17 @@ class FeePoolOperation extends React.Component {
             this.state.claimFeesAmountAsset
         );
     }
-
+    
+    onClaimCollateralFees() {
+        let account = ChainStore.getAccount(this.props.funderAccountName);
+        if (!account) return;
+        AssetActions.claimCollateralFees(
+            account.get("id"),
+            this.props.asset,
+            this.state.claimFeesAmountAsset
+        );
+    }
+    
     onClaimPool = () =>
         AssetActions.claimPool(
             this.props.asset,
@@ -413,7 +423,7 @@ class FeePoolOperation extends React.Component {
                         className={classnames("button", {
                             disabled: !validaccumulatedClaim
                         })}
-                        onClick={this.onClaimFees.bind(this)}
+                        onClick={this.onClaimCollateralFees.bind(this)}
                     >
                         <Translate content="explorer.asset.fee_pool.claim_collateral_fees" />
                     </button>
