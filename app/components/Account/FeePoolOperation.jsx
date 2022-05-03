@@ -344,6 +344,7 @@ class FeePoolOperation extends React.Component {
                   "short_backing_asset"
               ])
             : "1.3.0";
+        let backingAssetSymbol = backingAsset.get("symbol");
         let dynamicObject = getDynamicObject(
             asset.get("dynamic_asset_data_id")
         );
@@ -384,7 +385,7 @@ class FeePoolOperation extends React.Component {
                 <Translate
                     component="p"
                     content="explorer.asset.fee_pool.accumulated_collateral_fees"
-                    asset={[{backingAsset}.get("symbol")]}
+                    asset={backingAssetSymbol}
                 />
                 <div style={{paddingBottom: "1rem"}}>
                     <Translate content="explorer.asset.fee_pool.accumulated_collateral_fees" />
