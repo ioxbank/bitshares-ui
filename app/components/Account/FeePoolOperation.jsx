@@ -399,7 +399,7 @@ class FeePoolOperation extends React.Component {
                 <AmountSelector
                     label="transfer.amount"
                     display_balance={unclaimedaccumulatedBalanceText}
-                    amount={unclaimedaccumulatedBalance}
+                    amount={claimFeesAmount}
                     onChange={this.onClaimInput.bind(this, "claimFeesAmount")}
                     asset={backingAsset}
                     assets={[backingAsset]}
