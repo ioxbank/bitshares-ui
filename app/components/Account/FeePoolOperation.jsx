@@ -402,7 +402,7 @@ class FeePoolOperation extends React.Component {
                     amount={claimFeesAmount}
                     onChange={this.onClaimInput.bind(this, "claimFeesAmount")}
                     asset={backingAsset}
-                    assets={[asset.get("id")]}
+                    assets={[backingAsset]}
                     placeholder="0.0"
                     tabIndex={1}
                     style={{width: "100%", paddingTop: 16}}
