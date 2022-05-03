@@ -87,8 +87,10 @@ class FeePoolOperation extends React.Component {
         AssetActions.claimCollateralFees(
             account.get("id"),
             this.props.asset,
+            this.props.backingAsset,
             this.state.claimFeesAmountAsset
         );
+        console.log(this.state.claimFeesAmountAsset);
     }
     
     onClaimPool = () =>
