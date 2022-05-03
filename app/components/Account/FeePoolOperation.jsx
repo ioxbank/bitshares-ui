@@ -336,7 +336,7 @@ class FeePoolOperation extends React.Component {
         renderClaimCollateralFees() {
         const {props} = this;
         const {claimFeesAmount} = this.state;
-        const {asset, core, getDynamicObject} = props;
+        const {asset, getDynamicObject} = props;
         let backingAsset = this.props.asset.has("bitasset")
             ? this.props.asset.getIn([
                   "bitasset",
@@ -347,9 +347,6 @@ class FeePoolOperation extends React.Component {
         let dynamicObject = getDynamicObject(
             asset.get("dynamic_asset_data_id")
         );
-
-        const CollateralAssetSymbol = core.get("symbol") || "BTS";
-
         let unclaimedaccumulatedBalance = dynamicObject
             ? dynamicObject.get("accumulated_collateral_fees")
             : 0;
@@ -386,7 +383,7 @@ class FeePoolOperation extends React.Component {
                 <Translate
                     component="p"
                     content="explorer.asset.fee_pool.accumulated_collateral_fees"
-                    asset={CollateralAssetSymbol}
+                    asset={backingAsset}
                 />
                 <div style={{paddingBottom: "1rem"}}>
                     <Translate content="explorer.asset.fee_pool.accumulated_collateral_fees" />
