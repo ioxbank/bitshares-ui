@@ -354,16 +354,18 @@ class FeePoolOperation extends React.Component {
                   "short_backing_asset"
               ])
             : "1.3.0";
+            console.log(backingAsset);
         let dynamicObject = getDynamicObject(
             asset.get("dynamic_asset_data_id")
         );
+            console.log(dynamicObject);
         let unclaimedaccumulatedBalance = dynamicObject
             ? dynamicObject.get("accumulated_collateral_fees")
             : 0;
         let validaccumulatedClaim =
             claimFeesAmount > 0 &&
             this.state.claimFeesAmountAsset.getAmount() <= unclaimedaccumulatedBalance;
-
+            console.log(validaccumulatedClaim);
         let unclaimedaccumulatedBalanceText = (
             <span
                 onClick={() => {
@@ -387,6 +389,7 @@ class FeePoolOperation extends React.Component {
                 />
             </span>
         );
+console.log(unclaimedaccumulatedBalance);
 
         return (
             <div>
@@ -409,7 +412,7 @@ class FeePoolOperation extends React.Component {
                 <AmountSelector
                     label="transfer.amount"
                     display_balance={unclaimedaccumulatedBalanceText}
-                    amount={dynamicObject.get("accumulated_collateral_fees")}
+                    amount={claimFeesAmount}
                     onChange={this.onClaimInput.bind(this, "claimFeesAmount")}
                     asset={backingAsset}
                     assets={[backingAsset]}
