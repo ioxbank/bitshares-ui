@@ -220,6 +220,7 @@ class AssetActions {
                 claim_from_asset_id: asset.get("id") 
             }
         });
+        console.log(account_id, asset, core, amount);
         return dispatch => {
             return WalletDb.process_transaction(tr, null, true)
                 .then(() => {
