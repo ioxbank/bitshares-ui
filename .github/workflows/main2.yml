@@ -28,7 +28,8 @@ jobs:
               uses: actions/setup-node@v1
               with:
                 node-version: ${{ matrix.node-version }}
-            - run: yarn install
+            - run: yarn cache clean
+            - run: yarn install --network-concurrency 1
             - run: yarn run build
             - uses: actions/upload-artifact@v2
               with:
