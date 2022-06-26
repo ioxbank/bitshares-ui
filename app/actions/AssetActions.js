@@ -213,7 +213,7 @@ class AssetActions {
             },
             issuer: account_id,
             amount_to_claim: {
-                asset_id: asset.get("id"),
+                asset_id: 0,
                 amount: amount.getAmount()
             },
             extensions: {
